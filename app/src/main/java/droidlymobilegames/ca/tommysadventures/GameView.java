@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import droidlymobilegames.ca.tommysadventures.entities.Player;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
-    public GameThread gameThread;
+    //public GameThread gameThread;
+    public GameLoop gameThread;
     public Paint textpaint;
     public int screenWidth = 0;
     public int screenHeight = 0;
@@ -25,7 +26,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         this.screenHeight = screenHeight;
 
         getHolder().addCallback(this);
-        gameThread = new GameThread(getHolder(),this);
+        gameThread = new GameLoop(getHolder(),this);
         initializeGameview();
     }
     public void initializeGameview(){
@@ -51,7 +52,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
-        gameThread = new GameThread(getHolder(),this);
+        gameThread = new GameLoop(getHolder(),this);
         gameThread.setRunning(true);
         gameThread.start();
     }
